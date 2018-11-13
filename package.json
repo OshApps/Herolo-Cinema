@@ -1,0 +1,36 @@
+{
+  "name": "herolo_cinema",
+  "version": "1.0.0",
+  "author": "oshri",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server",
+    "build": "rimraf dist && webpack -p --colors --progress",
+    "start": "serve dist -p 3000"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "module-alias": "^2.1.0",
+    "react": "^16.6.1",
+    "react-dom": "^16.6.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^1.0.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "mini-css-extract-plugin": "^0.4.4",
+    "node-sass": "^4.10.0",
+    "npm": "^6.4.1",
+    "sass-loader": "^7.1.0",
+    "serve": "^10.0.2",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}

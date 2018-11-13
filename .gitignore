@@ -1,0 +1,4 @@
+.vscode
+.jshintrc
+node_modules
+npm-debug.log
