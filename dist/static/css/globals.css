@@ -1,3 +1,92 @@
-#app h1 {
-  color: green; }
+* {
+  box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  background: #fff;
+  color: #484848; }
+
+#app {
+  min-height: 100vh;
+  padding-bottom: 30px; }
+
+#app header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center; }
+
+#app main {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 30px auto; }
+
+#app .menu {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin-bottom: 20px; }
+
+#app main .movies {
+  display: flex;
+  flex-wrap: wrap; }
+
+#app main .movies .movie {
+  position: relative;
+  flex-basis: 18%;
+  cursor: pointer;
+  margin: 10px 1%; }
+
+#app main .movies .movie img {
+  display: block;
+  width: 100%;
+  height: auto; }
+
+#app main .movies .movie .overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5));
+  width: 100%;
+  height: 0;
+  transition: .5s ease; }
+
+#app main .movies .movie .overlay .movie_name {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none; }
+
+#app main .movies .movie .scroll_animation {
+  -moz-animation: scrolling_text 7s linear infinite;
+  -webkit-animation: scrolling_text 7s linear infinite;
+  animation: scrolling_text 7s linear infinite;
+  animation-play-state: paused; }
+
+#app main .movies .movie:hover .overlay {
+  height: 20%; }
+
+#app main .movies .movie:hover .scroll_animation {
+  animation-play-state: running; }
+
+@keyframes scrolling_text {
+  0% {
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%); }
+  100% {
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%); } }
 

@@ -1,5 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import style from '@app/styles/main.scss';
+import { Provider } from 'react-redux'
 
-ReactDOM.render((<h1 className="title">Hello World</h1>), document.getElementById('app'));
+import App from '@containers/app'
+import Store from './store'
+
+
+ReactDOM.render(
+    <Provider store={Store}>
+        <App />
+    </Provider>
+, document.getElementById('app'));

@@ -1,5 +1,4 @@
 const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
@@ -15,7 +14,12 @@ module.exports = {
     alias: {
       "@root": ".",
       "@app": "app",
-      "@components": "app/components"
+      "@components": "app/components",
+      "@containers": "app/containers",
+      "@actions": "app/actions",
+      "@reducers": "app/reducers",
+      "@utils": "app/utils",
+      "@consts": "app/consts"
     },
     modules: [__dirname, 'node_modules'],
   },
@@ -55,5 +59,7 @@ module.exports = {
     port: 3000,
     stats: "minimal",
     open: true
-  }
+  },
+  
+  devtool: 'eval-source-map'
 };
