@@ -7,7 +7,7 @@ export default class Header extends Component {
         <header>
             <span>Herolo Cinema</span>
         </header>
-        )
+        );
     }
 
 }

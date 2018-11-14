@@ -1,7 +1,5 @@
-module.exports = {
-    get,
-    post
-}
+
+export default {get, post};
 
 
 function post(url, data){
@@ -12,27 +10,23 @@ function post(url, data){
         headers: {
             "Content-Type": "application/json"
         }
-    })
-      
+    });
 }
 
 function get(...urls){
+    let init={ method: "GET" };
 
     if(urls.length === 0)
         {
-        throw new Error("Missing required parameters: You must pass at least one url.")
-        }
-
-    let init={
-            method: "GET"
+        throw new Error("Missing required parameters: You must pass at least one url.");
         }
 
     if(urls.length > 1)
         {
-        return Promise.all( urls.map( (url)=> fetchJsonData(url, init) ) )  
+        return Promise.all( urls.map( (url)=> fetchJsonData(url, init) ) );
         }
     
-    return fetchJsonData(urls[0], init)   
+    return fetchJsonData(urls[0], init);
 }
 
 
@@ -46,6 +40,6 @@ function fetchJsonData(url, init){
                 }
 
             throw new Error(response.statusText);
-            })
+            });
 }
 

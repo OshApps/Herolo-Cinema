@@ -1,0 +1,49 @@
+#app .modal .modal_content .modal_body{
+
+    .modal_menu{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    
+    .details_container{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+
+        .poster{
+            flex-basis: 30%;
+            padding: 5px;
+
+            img{
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .details{
+            display: flex;
+            flex-direction: column;
+            justify-items: flex-start;
+            flex-basis: 70%;
+            padding: 5px;
+
+            .movie_title{
+                font-size: 1.5em;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+
+            .details_item{
+                padding-left: 5px;
+                margin-bottom: 5px;
+                
+                .details_item_data{
+                    margin-left: 5px;  
+                }
+            }
+        }
+    }
+}
+

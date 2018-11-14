@@ -1,14 +1,11 @@
 
 #app main .movies{
 
-    .movie {
+    .movie{
         position: relative;
         flex-basis: 18%;
         cursor: pointer;
         margin: 10px 1%; 
-    }
-    
-    .movie{
 
         img{
             display: block;
@@ -31,7 +28,7 @@
             transition: .5s ease;
         }
 
-        .overlay .movie_name {
+        .overlay .movie_title {
             color: white;
             font-size: 20px;
             text-align: center;
@@ -45,18 +42,19 @@
             animation: scrolling_text 7s linear infinite;
             animation-play-state: paused;
         }
-    } 
-      
-    .movie:hover {
-        
-        .overlay {
-            height: 20%;
-        }
 
-        .scroll_animation{
-            animation-play-state: running;
+        &:hover {
+        
+            .overlay {
+                height: 20%;
+            }
+    
+            .scroll_animation{
+                animation-play-state: running;
+            }
         }
-    }
+    } 
+
 
     @keyframes scrolling_text {
         0%   { 

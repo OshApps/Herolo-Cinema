@@ -6,8 +6,9 @@ import "@components/layout/layout.scss"
 
 import * as moviesActions from '@actions/movies';
 
-import Header from '@components/layout/Header';
-import Main from '@components/layout/Main';
+import Header from '@components/layout/header';
+import Main from '@components/layout/main';
+import Modal from '@containers/layout/modal';
 
 class App extends Component {
 
@@ -20,21 +21,22 @@ class App extends Component {
         <div id="app">
             <Header/>
             <Main/>
+            <Modal/>
         </div>
-        )
+        );
     }
 }
 
 function mapStateToProps(state) {
-    let {} =state
+    let {} =state;
 
-	return {}
+	return {};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		fetchMovies:()=> dispatch(moviesActions.fetchMovies())
-	}
+	};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

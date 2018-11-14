@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import classnames from "classnames"
+import classnames from "classnames";
 
-import "./movie.scss"
+import "./movie.scss";
 
 export default class Movie extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { isMovieNameOverflowing: false };
+        this.state = { isMovieTitleOverflowing: false };
 
         this.movieElement = React.createRef();
-        this.movieNameElement = React.createRef();
+        this.movieTitleElement = React.createRef();
 
         this.onResize = this.onResize.bind(this);
     }
@@ -26,33 +26,33 @@ export default class Movie extends Component {
     }
 
     onResize() {
-        let isMovieNameOverflowing = false;
+        let isMovieTitleOverflowing = false;
         let padding = 20;
 
         let movieWidth = this.movieElement.current.offsetWidth;
-        let textWidth = this.movieNameElement.current.offsetWidth;
+        let textWidth = this.movieTitleElement.current.offsetWidth;
 
 
         if ((movieWidth - padding) < textWidth) {
-            isMovieNameOverflowing = true;
+            isMovieTitleOverflowing = true;
         }
 
-        if (this.state.isMovieNameOverflowing != isMovieNameOverflowing) {
-            this.setState({ isMovieNameOverflowing })
+        if (this.state.isMovieTitleOverflowing != isMovieTitleOverflowing) {
+            this.setState({ isMovieTitleOverflowing });
         }
     }
 
     render() {
-        let { isMovieNameOverflowing } = this.state;
-        let { movie } = this.props
+        let { isMovieTitleOverflowing } = this.state;
+        let { movie } = this.props;
 
         return (
             <div ref={this.movieElement} className="movie">
                 <img src={movie.poster} alt={movie.title} />
                 <div className="overlay">
                     <div
-                        ref={this.movieNameElement}
-                        className={classnames("movie_name", { "scroll_animation": isMovieNameOverflowing })}
+                        ref={this.movieTitleElement}
+                        className={classnames("movie_title", { "scroll_animation": isMovieTitleOverflowing })}
                     >
                         {movie.title}
                     </div>
