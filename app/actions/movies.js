@@ -1,7 +1,7 @@
-import fetchHelper from '@utils/fetchHelper';
+import fetchHelper from "@utils/fetchHelper";
 import movieHelper from "@utils/movieHelper";
 
-import { API_SEARCH_URL, API_ID_URL } from '@consts/urls/omdb';
+import { API_SEARCH_URL, API_ID_URL } from "@consts/urls/omdb";
 
 const search = "man";
 const SEARCH_URL = API_SEARCH_URL + search;

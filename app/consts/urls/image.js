@@ -1,0 +1,1 @@
+export const DEFAULT_MOVIE_IMAGE="https://i.imgur.com/UYnsJhl.jpg"

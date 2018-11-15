@@ -1,9 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import classnames from "classnames";
+
+import { openModal, Types } from "@actions/modal";
+
+const { DETAILS_POPUP_TYPE } = Types;
+
+import Poster from "@components/poster";
 
 import "./movie.scss";
 
-export default class Movie extends Component {
+class Movie extends Component {
     constructor(props) {
         super(props);
 
@@ -13,6 +20,7 @@ export default class Movie extends Component {
         this.movieTitleElement = React.createRef();
 
         this.onResize = this.onResize.bind(this);
+        this.openMovieDetails = this.openMovieDetails.bind(this);
     }
 
     componentDidMount() {
@@ -23,6 +31,12 @@ export default class Movie extends Component {
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.onResize);
+    }
+
+    openMovieDetails() {
+        let { openDetailsPopup, movie } = this.props;
+
+        openDetailsPopup(movie.id);
     }
 
     onResize() {
@@ -47,13 +61,12 @@ export default class Movie extends Component {
         let { movie } = this.props;
 
         return (
-            <div ref={this.movieElement} className="movie">
-                <img src={movie.poster} alt={movie.title} />
+            <div ref={this.movieElement} className="movie" onClick={this.openMovieDetails}>
+            
+                <Poster src={movie.poster} />
+
                 <div className="overlay">
-                    <div
-                        ref={this.movieTitleElement}
-                        className={classnames("movie_title", { "scroll_animation": isMovieTitleOverflowing })}
-                    >
+                    <div ref={this.movieTitleElement} className={classnames("movie_title", { "scroll_animation": isMovieTitleOverflowing })}>
                         {movie.title}
                     </div>
                 </div>
@@ -61,3 +74,15 @@ export default class Movie extends Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {};
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        openDetailsPopup: (movieId) => dispatch(openModal(DETAILS_POPUP_TYPE, movieId))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Movie)

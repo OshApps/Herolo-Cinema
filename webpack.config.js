@@ -1,36 +1,34 @@
-const path = require('path');
+const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 
 module.exports = {
-  mode: 'production',
-  entry: './app/index.js',
+  entry: "./app/index.js",
   output: {
-    filename: 'static/js/app.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: "static/js/app.js",
+    path: path.resolve(__dirname, "dist")
   },
   resolve: {
     alias: {
       "@root": ".",
       "@app": "app",
       "@components": "app/components",
-      "@containers": "app/containers",
       "@actions": "app/actions",
       "@reducers": "app/reducers",
       "@utils": "app/utils",
       "@consts": "app/consts"
     },
-    modules: [__dirname, 'node_modules'],
+    modules: [__dirname, "node_modules"],
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         query: {
-          presets: ['@babel/preset-react', '@babel/preset-env']
+          presets: ["@babel/preset-react", "@babel/preset-env"]
         }
       },
       {
@@ -49,8 +47,8 @@ module.exports = {
       filename: "static/css/globals.css",
     }),
     new CopyWebpackPlugin([
-      { from: 'app/index.html' },
-      // { from: 'app/static/icons' , to: 'static/icons'},
+      { from: "app/index.html" },
+      // { from: "app/static/icons" , to: "static/icons"},
     ])
   ],
   devServer: {
@@ -61,5 +59,5 @@ module.exports = {
     open: true
   },
   
-  devtool: 'eval-source-map'
+  devtool: "eval-source-map"
 };

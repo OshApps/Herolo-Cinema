@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import "./movies.scss";
 
-import Movie from "@components/movie";
+import Movie from "./movie";
 
 class Movies extends Component {
 
@@ -27,9 +27,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return {
-		
-	};
+	return {};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movies)

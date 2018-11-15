@@ -9,7 +9,7 @@ function formatTitle(title){
     let regFirstLetter=/\b[a-z]/g;
 
     return title.toLowerCase()
-            .replace(regFilter, '')
+            .replace(regFilter, "")
             .replace(regFirstLetter, (letter)=>(letter.toUpperCase()))
             .trim();
 }

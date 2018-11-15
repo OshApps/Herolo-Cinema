@@ -1,13 +1,18 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import classnames from "classnames";
+
+import { closeModal } from "@actions/modal";
+
+import { DEFAULT_MOVIE_IMAGE } from "@consts/urls/image";
 
 import validator from "@utils/validator";
 import movieHelper from "@utils/movieHelper";
 
 import "./edit.scss";
 
-import * as moviesActions from '@actions/movies';
+import ModalHeader from "@components/modal/layout/header";
+import ModalFooter from "@components/modal/layout/footer";
 
 class EditPopup extends Component {
 
@@ -15,6 +20,7 @@ class EditPopup extends Component {
         super(props);
 
         this.state = {
+            movie: null,
             errorMsg: {},
             form: {
                 title: "",
@@ -26,11 +32,22 @@ class EditPopup extends Component {
             }
         };
 
-
         this.onInputChange = this.onInputChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
+    componentDidMount() {
+        let { movies, movieId } = this.props;
+        let movie = null;
+
+        if (movieId) {
+            movie = movieHelper.findMovieById(movies, movieId);
+        }
+
+        if (movie) {
+            this.setState({ movie, form: { ...movie } });
+        }
+    }
 
     onInputChange(event) {
         let target = event.target;
@@ -42,8 +59,8 @@ class EditPopup extends Component {
     }
 
     onSubmit() {
-        let { form } = this.state;
-        let { title, year, runtime, genre, director } = form;
+        let { form, movie } = this.state;
+        let { title, year, runtime, genre, director, poster } = form;
         let { movies } = this.props;
         let { messages } = validator;
 
@@ -56,7 +73,7 @@ class EditPopup extends Component {
 
             if (validator.isEmpty(title)) {
                 errorMsg.title = messages.invalid("title");
-            } else if (movieHelper.isMovieTitleExist(movies, title)) {
+            } else if ((!movie || movie.title !== title) && movieHelper.isMovieTitleExist(movies, title)) {
                 form.title = title;
                 errorMsg.title = messages.exist("title");
             }
@@ -80,23 +97,30 @@ class EditPopup extends Component {
             errorMsg.director = messages.required;
         }
 
-        if (Object.keys(errorMsg).length > 0) {
-            this.setState({ errorMsg, form });
-        } else {
-            this.setState({ errorMsg, form });
-            //submit
+        if (!validator.isEmpty(poster) && !validator.isValidURL(poster)) {
+            errorMsg.poster = messages.invalid("poster");
         }
+
+        if (Object.keys(errorMsg).length == 0) {
+            //TODO submit
+        }
+
+        this.setState({ errorMsg, form });
     }
 
     render() {
-        let { errorMsg, form } = this.state;
+        let { errorMsg, form, movie } = this.state;
+        let { closeModal } = this.props;
+        let isEditMode = (movie != null);
+        let buttons = [
+            { value: "Cancel", click: closeModal },
+            { value: isEditMode ? "Save" : "Add", click: this.onSubmit }
+        ];
 
         return (
-            <div className="modal_content">
-                <div className="modal_header">
-                    <span className="title">Edit Movie</span>
-                    <i className="close fas fa-times"></i>
-                </div>
+            <div className="modal_content" onClick={(e) => { e.stopPropagation() }}>
+
+                <ModalHeader title={isEditMode ? "Edit Movie" : "Add Movie"} />
 
                 <div className="modal_body">
                     <form>
@@ -170,10 +194,7 @@ class EditPopup extends Component {
                     </form>
                 </div>
 
-                <div className="modal_footer">
-                    <button>Cancel</button>
-                    <button onClick={this.onSubmit}>Save</button>
-                </div>
+                <ModalFooter buttons={buttons} />
             </div>
         );
     }
@@ -187,7 +208,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        fetchMovies: () => dispatch(moviesActions.fetchMovies())
+        closeModal: () => dispatch(closeModal())
     };
 }
 
