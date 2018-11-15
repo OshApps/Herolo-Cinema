@@ -14,12 +14,12 @@ class DetailsPopup extends Component {
         <div className="modal_content">
            <div className="modal_header">
                 <span className="title">Movie Details</span>
-                <i class="close fas fa-times"></i>
+                <i className="close fas fa-times"></i>
             </div>
             <div className="modal_body">
                 <div className="modal_menu">
-                    <i class="fas fa-edit"></i>
-                    <i class="fas fa-trash"></i>
+                    <i className="fas fa-edit"></i>
+                    <i className="fas fa-trash"></i>
                 </div>
 
                 <div className="details_container">

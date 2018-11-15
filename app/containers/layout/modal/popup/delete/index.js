@@ -13,7 +13,7 @@ class DeletePopup extends Component {
         <div className="modal_content">
             <div className="modal_header">
                 <span className="title">Delete Movie</span>
-                <i class="close fas fa-times"></i>
+                <i className="close fas fa-times"></i>
             </div>
             <div className="modal_body">
 

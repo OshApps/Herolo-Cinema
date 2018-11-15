@@ -1,6 +1,6 @@
 #app .modal .modal_content .modal_body{
 
-    .form{
+    form{
         display: flex;
         flex-direction: column;
 
@@ -17,15 +17,15 @@
             }
             
             input{
-                flex-basis: 30%;  
+                flex-basis: 40%;  
                 padding: 5px;
             }
 
             .error_msg{
-                flex-basis: 30%;
+                flex-basis: 40%;
                 color:#ff0000;
                 font-size: 0.7em;
-                text-align: center;
+                padding-left: 10px;
                 display: none;
             }
 
