@@ -29,7 +29,7 @@ class DetailsPopup extends Component {
         let { movies, movieId } = this.props;
         let movie = null;
 
-        if (!movieId) {
+        if (movieId) {
             movie = movieHelper.findMovieById(movies, movieId);
         }
 

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import { deleteMovie } from "@actions/movies";
 import { closeModal } from "@actions/modal";
 
 import movieHelper from "@utils/movieHelper";
@@ -31,20 +32,15 @@ class DeletePopup extends Component {
         }
 
         if (movie) {
-            this.setState({
-                movie: {
-                    id: movie.id,
-                    title: movie.title,
-                }
-            });
+            this.setState({ movie });
         }
     }
 
     onClickDelete() {
-        let { closeModal, movieId } = this.props;
+        let { closeModal, deleteMovie, movieId } = this.props;
 
         closeModal();
-        //TODO remove movie
+        deleteMovie(movieId);
     }
 
     renderDeleteMsg() {
@@ -99,12 +95,18 @@ class DeletePopup extends Component {
 function mapStateToProps(state) {
     let { movies } = state;
 
+    movies=movies.map((movie)=>({ 
+        id: movie.id,
+        title: movie.title
+    }));
+
     return { movies };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        closeModal: () => dispatch(closeModal())
+        closeModal: () => dispatch(closeModal()),
+        deleteMovie: (id) => dispatch(deleteMovie(id))
     };
 }
 

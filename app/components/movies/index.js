@@ -23,6 +23,12 @@ class Movies extends Component {
 function mapStateToProps(state) {
     let {movies} =state;
 
+    movies=movies.map((movie)=>({ 
+        id: movie.id,
+        title: movie.title,
+        poster: movie.poster,
+    }));
+
 	return {movies};
 }
 

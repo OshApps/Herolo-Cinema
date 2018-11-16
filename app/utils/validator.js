@@ -5,14 +5,13 @@ const messages = {
     exist: (name) => (`The ${name} is already exist`)
 }
 
-
 export default {
     isEmpty,
     isValidYear,
     isValidURL,
+    validateRequiredFields,
     messages
 };
-
 
 function isEmpty(str) {
     return (!str || 0 === str.length);
@@ -26,6 +25,18 @@ function isValidYear(yaer) {
 }
 
 function isValidURL(url) {
-    var reg = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/;
+    var reg = /\.(jpg|gif|png)$/;
     return reg.test(url);
+}
+
+function validateRequiredFields(form){
+    let errorMsg = {};
+
+    for(let key in form) {
+        if(isEmpty(form[key])) {
+            errorMsg[key]= messages.required;
+        }
+    }
+
+    return errorMsg;
 }

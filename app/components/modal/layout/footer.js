@@ -7,8 +7,8 @@ export default class ModalFooter extends Component {
 
         return (
             <div className="modal_footer">
-                {buttons.map((button)=>(
-                   <button onClick={button.click}>{button.value}</button> 
+                {buttons.map(({ value, click }) => (
+                    <button onClick={click} key={value}>{value}</button>
                 ))}
             </div>
         );

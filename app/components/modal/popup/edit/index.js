@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import classnames from "classnames";
 
+import { editMovie, addMovie } from "@actions/movies";
 import { closeModal } from "@actions/modal";
 
 import { DEFAULT_MOVIE_IMAGE } from "@consts/urls/image";
@@ -45,6 +46,11 @@ class EditPopup extends Component {
         }
 
         if (movie) {
+
+            if(movie.poster === DEFAULT_MOVIE_IMAGE){
+                movie.poster="";
+            }
+
             this.setState({ movie, form: { ...movie } });
         }
     }
@@ -58,51 +64,42 @@ class EditPopup extends Component {
         this.setState({ form });
     }
 
+    submit(form) {
+        let { movie } = this.state;
+        let { editMovie, addMovie, closeModal } = this.props;
+        let submit = movie ? editMovie : addMovie;
+
+        if (validator.isEmpty(form.poster)) {
+            form.poster = DEFAULT_MOVIE_IMAGE;
+        }
+
+        submit(form);
+        closeModal();
+    }
+
     onSubmit() {
         let { form, movie } = this.state;
-        let { title, year, runtime, genre, director, poster } = form;
         let { movies } = this.props;
         let { messages } = validator;
-
         let errorMsg = {};
 
-        if (validator.isEmpty(title)) {
-            errorMsg.title = messages.required;
-        } else {
-            title = movieHelper.formatTitle(title);
+        form.runtime=movieHelper.formatText(form.runtime);
+        form.genre=movieHelper.formatText(form.genre);
+        form.director=movieHelper.formatText(form.director);
 
-            if (validator.isEmpty(title)) {
-                errorMsg.title = messages.invalid("title");
-            } else if ((!movie || movie.title !== title) && movieHelper.isMovieTitleExist(movies, title)) {
-                form.title = title;
+        errorMsg =movieHelper.validateMovieForm(form);
+
+        if (!errorMsg.title) {
+
+            form.title = movieHelper.formatTitle(form.title);
+
+            if ((!movie || movie.title !== form.title) && movieHelper.isMovieTitleExist(movies, form.title)) {
                 errorMsg.title = messages.exist("title");
             }
         }
 
-        if (validator.isEmpty(year)) {
-            errorMsg.year = messages.required;
-        } else if (!validator.isValidYear(year)) {
-            errorMsg.year = messages.invalid("year");
-        }
-
-        if (validator.isEmpty(runtime)) {
-            errorMsg.runtime = messages.required;
-        }
-
-        if (validator.isEmpty(genre)) {
-            errorMsg.genre = messages.required;
-        }
-
-        if (validator.isEmpty(director)) {
-            errorMsg.director = messages.required;
-        }
-
-        if (!validator.isEmpty(poster) && !validator.isValidURL(poster)) {
-            errorMsg.poster = messages.invalid("poster");
-        }
-
         if (Object.keys(errorMsg).length == 0) {
-            //TODO submit
+            this.submit(form);
         }
 
         this.setState({ errorMsg, form });
@@ -208,7 +205,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        closeModal: () => dispatch(closeModal())
+        closeModal: () => dispatch(closeModal()),
+        editMovie: (movie) => dispatch(editMovie(movie)),
+        addMovie: (movie) => dispatch(addMovie(movie))
     };
 }
 
