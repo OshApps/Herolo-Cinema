@@ -6,12 +6,12 @@ import { closeModal } from "@actions/modal";
 class ModalHeader extends Component {
 
     render() {
-        let { title,closeModal } = this.props;
+        let { title, closeModal } = this.props;
 
         return (
             <div className="modal_header">
                 <span className="title">{title}</span>
-                <i className="close fas fa-times" onClick={closeModal}></i>
+                <span className="close" onClick={closeModal}>&times;</span>
             </div>
         );
     }

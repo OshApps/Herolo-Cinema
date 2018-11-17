@@ -5,6 +5,6 @@ import rootReducer from "@reducers"
 
 const middleware = applyMiddleware(reduxThunk)
 
-const init={ }
+const init = {}
 
-export default createStore(rootReducer, init ,middleware)
+export default createStore(rootReducer, init, middleware)

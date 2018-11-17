@@ -1,8 +1,8 @@
 
-export default {get, post};
+export default { get, post };
 
 
-function post(url, data){
+function post(url, data) {
 
     return fetchJsonData(url, {
         method: "POST",
@@ -13,33 +13,30 @@ function post(url, data){
     });
 }
 
-function get(...urls){
-    let init={ method: "GET" };
+function get(...urls) {
+    let init = { method: "GET" };
 
-    if(urls.length === 0)
-        {
+    if (urls.length === 0) {
         throw new Error("Missing required parameters: You must pass at least one url.");
-        }
+    }
 
-    if(urls.length > 1)
-        {
-        return Promise.all( urls.map( (url)=> fetchJsonData(url, init) ) );
-        }
-    
+    if (urls.length > 1) {
+        return Promise.all(urls.map((url) => fetchJsonData(url, init)));
+    }
+
     return fetchJsonData(urls[0], init);
 }
 
 
-function fetchJsonData(url, init){
+function fetchJsonData(url, init) {
     return fetch(url, init)
-        .then( response => {
+        .then(response => {
 
-            if(response.ok) 
-                {
+            if (response.ok) {
                 return response.json();
-                }
+            }
 
             throw new Error(response.statusText);
-            });
+        });
 }
 

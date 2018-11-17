@@ -5,13 +5,13 @@ import Movies from "@components/movies";
 
 export default class Main extends Component {
 
-    render() {   
+    render() {
 
         return (
-        <main>
-            <Menu/>
-            <Movies />
-        </main>
+            <main>
+                <Menu />
+                <Movies />
+            </main>
         );
     }
 }

@@ -1,7 +1,8 @@
 
-#app main{
-    .movies{
-        display: flex;
-        flex-wrap: wrap;
+#app main {
+    .movies {
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:space-around;
     }
 }

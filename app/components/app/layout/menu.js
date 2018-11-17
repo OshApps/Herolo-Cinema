@@ -12,7 +12,7 @@ class Menu extends Component {
 
         return (
             <div className="menu">
-                <button onClick={openEditPopup}>add new movie</button>
+                <button className="btn btn_green" onClick={openEditPopup}>Add New Movie</button>
             </div>
         );
     }

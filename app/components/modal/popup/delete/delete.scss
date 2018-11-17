@@ -1,16 +1,22 @@
-#app .modal .modal_content .modal_body{
+@import "@styles/variables.scss";
 
-    .message{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10px 30px;
-
-
+#app .modal .modal_content .modal_body {
+    .message {
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:10px  15px 0 15px;
+        min-height:min-content;
     }
 
-    .message_movie_title{
-        font-weight: bold;
+    .message_movie_title {
+        font-weight:bold;
         margin:0 5px;
+    }
+
+    @media (min-width: $screen_sm) {
+        .message {
+            padding:10px 30px;
+        }
     }
 }

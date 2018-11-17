@@ -68,10 +68,18 @@ class DeletePopup extends Component {
         let { movie } = this.state;
         let { closeModal } = this.props;
         let hasMovie = (movie != null);
-        let buttons = [{ value: hasMovie ? "Cancel" : "OK", click: closeModal }];
+        let buttons = [{
+            value: hasMovie ? "Cancel" : "OK",
+            click: closeModal,
+            className: "btn"
+        }];
 
         if (hasMovie) {
-            buttons.push({ value: "Delete", click: this.onClickDelete });
+            buttons.push({
+                value: "Delete",
+                click: this.onClickDelete,
+                className: "btn btn_red"
+            });
         }
 
         return (
@@ -95,7 +103,7 @@ class DeletePopup extends Component {
 function mapStateToProps(state) {
     let { movies } = state;
 
-    movies=movies.map((movie)=>({ 
+    movies = movies.map((movie) => ({
         id: movie.id,
         title: movie.title
     }));

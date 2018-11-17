@@ -56,8 +56,8 @@ class DetailsPopup extends Component {
         return (
             <div className="modal_body">
                 <div className="modal_menu">
-                    <i className="fas fa-edit" onClick={this.onClickEdit}></i>
-                    <i className="fas fa-trash" onClick={this.onClickDelete}></i>
+                    <button className="btn btn_green" onClick={this.onClickEdit}>Edit</button>
+                    <button className="btn btn_red" onClick={this.onClickDelete}>Delete</button>
                 </div>
 
                 <div className="details_container">
@@ -118,7 +118,7 @@ class DetailsPopup extends Component {
                 {hasMovie ? this.renderDetails() : this.renderErrorMsg()}
 
                 {!hasMovie &&
-                    <ModalFooter buttons={[{ value: "OK", click: closeModal }]} />
+                    <ModalFooter buttons={[{ value: "OK", click: closeModal, className: "btn" }]} />
                 }
 
             </div>

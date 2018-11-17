@@ -47,8 +47,8 @@ class EditPopup extends Component {
 
         if (movie) {
 
-            if(movie.poster === DEFAULT_MOVIE_IMAGE){
-                movie.poster="";
+            if (movie.poster === DEFAULT_MOVIE_IMAGE) {
+                movie.poster = "";
             }
 
             this.setState({ movie, form: { ...movie } });
@@ -83,11 +83,11 @@ class EditPopup extends Component {
         let { messages } = validator;
         let errorMsg = {};
 
-        form.runtime=movieHelper.formatText(form.runtime);
-        form.genre=movieHelper.formatText(form.genre);
-        form.director=movieHelper.formatText(form.director);
+        form.runtime = movieHelper.formatText(form.runtime);
+        form.genre = movieHelper.formatText(form.genre);
+        form.director = movieHelper.formatText(form.director);
 
-        errorMsg =movieHelper.validateMovieForm(form);
+        errorMsg = movieHelper.validateMovieForm(form);
 
         if (!errorMsg.title) {
 
@@ -110,8 +110,8 @@ class EditPopup extends Component {
         let { closeModal } = this.props;
         let isEditMode = (movie != null);
         let buttons = [
-            { value: "Cancel", click: closeModal },
-            { value: isEditMode ? "Save" : "Add", click: this.onSubmit }
+            { value: "Cancel", click: closeModal, className: "btn" },
+            { value: isEditMode ? "Save" : "Add", click: this.onSubmit, className: "btn btn_green" }
         ];
 
         return (

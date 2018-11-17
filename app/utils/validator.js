@@ -29,12 +29,12 @@ function isValidURL(url) {
     return reg.test(url);
 }
 
-function validateRequiredFields(form){
+function validateRequiredFields(form) {
     let errorMsg = {};
 
-    for(let key in form) {
-        if(isEmpty(form[key])) {
-            errorMsg[key]= messages.required;
+    for (let key in form) {
+        if (isEmpty(form[key])) {
+            errorMsg[key] = messages.required;
         }
     }
 

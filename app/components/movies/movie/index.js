@@ -22,7 +22,7 @@ class Movie extends Component {
         this.onResize = this.onResize.bind(this);
         this.openMovieDetails = this.openMovieDetails.bind(this);
     }
-    
+
     componentDidMount() {
         window.addEventListener("resize", this.onResize);
 
@@ -34,10 +34,10 @@ class Movie extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if(prevProps.movie.title !== this.props.movie.title) {
+        if (prevProps.movie.title !== this.props.movie.title) {
             this.onResize();
         }
-      }
+    }
 
     openMovieDetails() {
         let { openDetailsPopup, movie } = this.props;
@@ -68,7 +68,7 @@ class Movie extends Component {
 
         return (
             <div ref={this.movieElement} className="movie" onClick={this.openMovieDetails}>
-            
+
                 <Poster src={movie.poster} />
 
                 <div className="overlay">

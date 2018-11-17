@@ -1,42 +1,75 @@
-#app .modal .modal_content .modal_body{
+@import "@styles/variables.scss";
 
-    form{
-        display: flex;
-        flex-direction: column;
+#app .modal .modal_content .modal_body {
+    form {
+        display:flex;
+        flex-direction:column;
+        padding:10px 0;
+        min-height:min-content;
 
-        padding: 10px 30px;
-        
-        .form_group{
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
+        @media (min-width: $screen_sm) {
+            padding:10px 15px;
+        }
 
-            label{
-                flex-basis: 20%;
-                padding-right: 10px;
+        @media (min-width: $screen_md) {
+            padding:10px 30px;
+        }
+
+        .form_group {
+            display:flex;
+            flex-direction:column;
+            margin-bottom:5px;
+            padding:0 10px;
+
+            label {
+                margin-bottom:5px;
             }
-            
-            input{
-                flex-basis: 40%;  
-                padding: 5px;
+
+            input {
+                padding:5px;
+                margin-bottom:5px;
             }
 
-            .error_msg{
-                flex-basis: 40%;
+            .error_msg {
+                display:flex;
                 color:#ff0000;
-                font-size: 0.7em;
-                padding-left: 10px;
-                display: none;
+                font-size:0.7em;
+                visibility:hidden;
+                height:20px;
             }
 
-            &.error{
-
-                input{
-                    border: 2px solid #ff000080 ;    
+            &.error {
+                input {
+                    border:2px solid #ff000080 ;
                 }
 
-                .error_msg{
-                    display: block;
+                .error_msg {
+                    visibility:visible;
+                }
+            }
+
+            @media (min-width: $screen_sm) {
+                flex-direction:row;
+                margin-bottom:10px;
+
+                label {
+                    flex-basis:20%;
+                    min-width:80px;
+                    padding-right:10px;
+                    margin-bottom:0;
+                }
+
+                input {
+                    margin-bottom:0;
+                    flex-basis:40%;
+                    min-width:140px;
+                }
+
+                .error_msg {
+                    align-items:center;
+                    flex-grow:1;
+                    padding-left:10px;
+                    height:auto;
                 }
             }
         }

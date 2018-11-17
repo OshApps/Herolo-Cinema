@@ -17,7 +17,8 @@ module.exports = {
       "@actions": "app/actions",
       "@reducers": "app/reducers",
       "@utils": "app/utils",
-      "@consts": "app/consts"
+      "@consts": "app/consts",
+      "@styles": "app/styles"
     },
     modules: [__dirname, "node_modules"],
   },
@@ -58,6 +59,6 @@ module.exports = {
     stats: "minimal",
     open: true
   },
-  
+
   devtool: "eval-source-map"
 };

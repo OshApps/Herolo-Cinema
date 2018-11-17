@@ -6,7 +6,7 @@ import "./modal.scss";
 
 import { closeModal, Types } from "@actions/modal";
 
-const {  DETAILS_POPUP_TYPE, EDIT_POPUP_TYPE, DELETE_POPUP_TYPE } = Types;
+const { DETAILS_POPUP_TYPE, EDIT_POPUP_TYPE, DELETE_POPUP_TYPE } = Types;
 
 import DetailsPopup from "./popup/details";
 import EditPopup from "./popup/edit";
