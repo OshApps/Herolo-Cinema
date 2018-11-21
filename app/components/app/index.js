@@ -2,12 +2,12 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 
 import "./app.scss"
-import "./layout/layout.scss"
+import "@components/layout/layout.scss"
 
 import { fetchMovies } from "@actions/movies";
 
-import Header from "./layout/header";
-import Main from "./layout/main";
+import Header from "@components/layout/header";
+import Main from "@components/layout/main";
 import Modal from "@components/modal";
 
 class App extends Component {

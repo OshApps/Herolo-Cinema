@@ -24,10 +24,8 @@ export function deleteMovie(movieId) {
 }
 
 export function fetchMovies() {
-    const request = fetchHelper.get(SEARCH_URL);
-
-    return (dispatch) => {
-        request.then((res) => {
+    const request = fetchHelper.get(SEARCH_URL)
+        .then((res) => {
             let result = res["Search"];
             let idUrls = [];
 
@@ -35,10 +33,12 @@ export function fetchMovies() {
                 idUrls = result.map(({ imdbID }) => (API_ID_URL + imdbID));
             }
 
-            fetchHelper.get(...idUrls)
-                .then((movies) => {
-                    dispatchMovies(dispatch, movies);
-                });
+            return fetchHelper.get(...idUrls)
+        })
+
+    return (dispatch) => {
+        request.then((movies) => {
+            dispatchMovies(dispatch, movies);
         })
     };
 }
